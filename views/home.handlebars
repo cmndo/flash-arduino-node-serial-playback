@@ -1,1 +1,23 @@
-<h1>Example App: {{ip}}</h1>
+<!-- using query string -->
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"
+width="500"
+height="300"
+align="middle"
+id="main">
+<param name="allowScriptAccess" value="sameDomain" />
+<param name="movie" value="fans-main.swf?ip={{ip}}&port={{port}}" />
+<param name="quality" value="high" />
+<param name="bgcolor" value="#ffffff" />
+<embed src="fans-main.swf?ip={{ip}}&port={{port}}"
+width="500"
+height="300"
+autostart="false"
+quality="high"
+bgcolor="#ffffff"
+name="main"
+align="middle"
+allowScriptAccess="sameDomain"
+type="application/x-shockwave-flash"
+pluginspage="http://www.macromedia.com/go/getflashplayer" />
+</object>

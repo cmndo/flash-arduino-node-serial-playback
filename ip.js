@@ -1,1 +1,0 @@
-var ip = require('ip').address();
