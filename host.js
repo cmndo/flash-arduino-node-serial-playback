@@ -135,3 +135,71 @@ app.listen(server_port, function () {
   spawn('open', ['http://' + ip + ':' + server_port + '/']);
 });
 
+/*
+	Arduino Serial Communiction
+*/
+var serialport = require('serialport');
+var SerialPort = serialport.SerialPort;
+
+
+
+//connect to port
+var portName = process.argv[2];
+var myPort;
+
+if(portName === undefined){
+    // list serial ports:
+	serialport.list(function (err, ports) {
+		console.log("    COMM Port Scan - Quit server and run again $ node host /dev/modemxxx");
+	    ports.forEach(function(port) {
+	        console.log("        " + port.comName);
+	    });
+	});
+
+	return false;
+} else {
+	serialConnect();
+}
+
+function serialConnect() {
+	myPort = new SerialPort(portName, {
+        baudRate: 9600,
+        parser: serialport.parsers.readline("\n")
+    });
+    myPort.on('open', showPortOpen);
+    myPort.on('data', sendSerialData);
+    myPort.on('close', showPortClose);
+    myPort.on('error', showError);
+}
+
+/*
+	Serial Communication Callbacks
+*/
+function sendSerialData(data) {
+	console.log("Serial data received");
+	/*
+			Split at ^ and check which button is being pressed
+	*/
+	var button = data.split("^")[1];
+	if(button === "1"){
+		//run command associated with button 1
+		console.log("button 1 pressed");
+		roles['presentation'].write('forward');
+	} else if(button === "2"){
+		//run command associated with button 2
+		console.log("button 2 pressed");
+		roles['presentation'].write('backward');
+	}
+}
+
+	//the other stuff
+function showPortOpen() {
+	console.log('port open. Data rate: ' + myPort.options.baudRate);
+}
+function showPortClose() {
+	console.log('port closed.');
+}
+
+function showError(error) {
+	console.log('Serial port error: ' + error);
+}
