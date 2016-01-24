@@ -1,4 +1,4 @@
-# flash-arduino-node-serial-playback
+# flash-arduino-node-serial-playback aka FANS
 Standalone system for Flash playback control with an Arduino Uno connected to USB communicating via Serial over a NodeJS Socket Server
 
 
@@ -8,7 +8,22 @@ Standalone system for Flash playback control with an Arduino Uno connected to US
 3. From the repo directory run `npm install` in terminal.
 4. Follow this wiring diagram. (Sorry, don't have this made yet)
 5. Open `fans-2-button-sketch/fans-2-button-sketch.ino` and [upload](https://www.arduino.cc/en/main/howto) it to your Arduino
-6. From the repo director run `node fans --scan` to list your Serial devices. You should see something like `/dev/cu.Bluetooth-Incoming-Port`. Keep note of that. You'll need it later.
-7. Open `fans-presentation.fla` in Flash.
+6. Open `public/fans-main.fla` in Flash and make a timeline based animation.
+7. From the repo directory run `node host`. Your terminal will look something like
 
-I have a demo file that isn't very easy to explain so let me simplify that process before I get further down this list of instructions.
+	FANS Socket server online. (10.0.0.6:8080)
+	FANS Communication Server online. (10.0.0.6:8124)
+	Launching browser.
+	    COMM Port Scan - Quit server and run again $ node host /dev/modemxxx
+	        /dev/cu.Bluetooth-Incoming-Port
+	        /dev/cu.usbmodem1411
+	Identified roles[presentation]
+
+8. Quit the app.
+9. From the repo directory run `nade host /dev/cu.usbmodem1411` where `cu.usbmodem1411` is your arduino's ID. Mine shows up as `cu.usbmodem1411` so my guess is yours will be similar.
+
+The browser will automatically open and your flash file will be served. Pressing button 1 will play your timeline. Pressing button 2 will play the timeline backwards.
+
+Sure it's a lot of work, but when you're done you've got an Arduino communicating with Flash via a NodeJS Socket server and a serial monitor. #winning
+
+
