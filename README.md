@@ -7,17 +7,17 @@ Standalone system for Flash playback control with an Arduino Uno connected to US
 2. Install Arduino IDE. You can get it [here](https://www.arduino.cc/en/Main/Software)
 3. From the repo directory run `npm install` in terminal.
 4. Follow this wiring diagram. (Sorry, don't have this made yet)
-5. Open `fans-2-button-sketch/fans-2-button-sketch.ino` and [upload](https://www.arduino.cc/en/main/howto) it to your Arduino
+5. Open `Arduino/fans-2-button-sketch/fans-2-button-sketch.ino` and [upload](https://www.arduino.cc/en/main/howto) it to your Arduino
 6. Open `public/fans-main.fla` in Flash and make a timeline based animation.
 7. From the repo directory run `node host`. Your terminal will look something like
 
-	FANS Socket server online. (10.0.0.6:8080)
-	FANS Communication Server online. (10.0.0.6:8124)
-	Launching browser.
-	    COMM Port Scan - Quit server and run again $ node host /dev/modemxxx
-	        /dev/cu.Bluetooth-Incoming-Port
-	        /dev/cu.usbmodem1411
-	Identified roles[presentation]
+		FANS Socket server online. (10.0.0.6:8080). 
+		FANS Communication Server online. (10.0.0.6:8124). 
+		Launching browser. 
+		COMM Port Scan - Quit server and run again $ node host /dev/modemxxx 
+		/dev/cu.Bluetooth-Incoming-Port 
+		/dev/cu.usbmodem1411
+		Identified roles[presentation]
 
 8. Quit the app.
 9. From the repo directory run `nade host /dev/cu.usbmodem1411` where `cu.usbmodem1411` is your arduino's ID. Mine shows up as `cu.usbmodem1411` so my guess is yours will be similar.
