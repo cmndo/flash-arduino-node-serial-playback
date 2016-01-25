@@ -1,46 +1,23 @@
 /*
-  Button
+  Push a button and send a string over serial.
 
- Turns on and off a light emitting diode(LED) connected to digital
- pin 13, when pressing a pushbutton attached to pin 2.
-
-
- The circuit:
- * LED attached from pin 13 to ground
- * pushbutton attached to pin 2 from +5V
- * 10K resistor attached to pin 2 from ground
-
- * Note: on most Arduinos there is already an LED on the board
- attached to pin 13.
+  Buttons are on pins 2 and 4.
+  LEDS are on pin 9 and pin 10.
+*/
 
 
- created 2005
- by DojoDave <http://www.0j0.org>
- modified 30 Aug 2011
- by Tom Igoe
+// set variables for button 1
+const int buttonPin = 2;
+const int ledPin =  9;
+int buttonState = 0;
+int buttonDown = 0;
 
- This example code is in the public domain.
-
- http://www.arduino.cc/en/Tutorial/Button
- */
-
-// constants won't change. They're used here to
-// set pin numbers:
-const int buttonPin = 2;     // the number of the pushbutton pin
-const int ledPin =  9;      // the number of the LED pin
-
+//set variables for button 2
 const int buttonPin2 = 4;
 const int ledPin2 = 10;
-
-// variables will change:
-int buttonState = 0;         // variable for reading the pushbutton status
 int buttonState2 = 0;
-
-int buttonDown = 0;
 int buttonDown2 = 0;
 
-String inputString = "";         // a string to hold incoming data
-boolean stringComplete = false;  // whether the string is complete
 
 void setup() {
   // initialize the LED pin as an output:
@@ -55,8 +32,6 @@ void setup() {
 
   Serial.begin(9600);
 
-  // reserve 200 bytes for the inputString:
-  inputString.reserve(200);
 }
 /*
 
@@ -69,75 +44,37 @@ void setup() {
 
 */
 void loop() {
-  // read the state of the pushbutton value:
+  // Read the state of button 1 and if it hasn't been detected as pushed, trigger one Serial.print for Button^1
   buttonState = digitalRead(buttonPin);
-  buttonState2 = digitalRead(buttonPin2);
-
+  
   if (buttonState == HIGH) {
     if(buttonDown == 0){
       buttonDown = 1;
       Serial.print("Button^1\n");
-      //delay(3);
+      digitalWrite(ledPin, HIGH);
     }
   } else {
     if(buttonDown == 1){
       buttonDown = 0;
+      digitalWrite(ledPin, LOW);
     }
   }
 
 
-  //button 2 pushed
+  // Read the state of button 2 and if it hasn't been detected as pushed, trigger one Serial.print for Button^2
+  buttonState2 = digitalRead(buttonPin2);
+  
   if (buttonState2 == HIGH) {
     if(buttonDown2 == 0){
       buttonDown2 = 1;
-      Serial.print("Button^2\n");      
-      //delay(3);
+      Serial.print("Button^2\n");
+      digitalWrite(ledPin2, HIGH); 
     }
   } else {
     if(buttonDown2 == 1){
       buttonDown2 = 0;
-    }
-  }
-
-  serialEvent(); //call the function
-  // print the string when a newline arrives:
-  if (stringComplete) {
-    if(inputString == "green") {
-      digitalWrite(ledPin, HIGH);
-      delay(50);
-      digitalWrite(ledPin, LOW);
-      delay(50);
-      digitalWrite(ledPin, HIGH);
-      delay(50);
-      digitalWrite(ledPin, LOW);
-      delay(50);
-      digitalWrite(ledPin, HIGH);
-      delay(50);
-      digitalWrite(ledPin, LOW);
-    }
-    // clear the string:
-    inputString = "";
-    stringComplete = false;
-  }
-}
-
-
-/*
-  SerialEvent occurs whenever a new data comes in the
- hardware serial RX.  This routine is run between each
- time loop() runs, so using delay inside loop can delay
- response.  Multiple bytes of data may be available.
- */
-void serialEvent() {
-  while (Serial.available()) {
-    // get the new byte:
-    char inChar = (char)Serial.read();
-    // add it to the inputString:
-    inputString += inChar;
-    // if the incoming character is a newline, set a flag
-    // so the main loop can do something about it:
-    if (inChar == '\r') {
-      stringComplete = true;
+      digitalWrite(ledPin2, LOW);
     }
   }
 }
+
