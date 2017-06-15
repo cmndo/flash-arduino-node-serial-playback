@@ -22,7 +22,7 @@ Work in progress. If you want to get up and running shoot me a message on Twitte
 		Identified roles[presentation]
 
 8. Quit the app.
-9. From the repo directory run `nade host /dev/cu.usbmodem1411` where `cu.usbmodem1411` is your arduino's ID. Mine shows up as `cu.usbmodem1411` so my guess is yours will be similar.
+9. From the repo directory run `node host /dev/cu.usbmodem1411` where `cu.usbmodem1411` is your arduino's ID. Mine shows up as `cu.usbmodem1411` so my guess is yours will be similar.
 
 The browser will automatically open and your flash file will be served. Pressing button 1 will play your timeline. Pressing button 2 doesn't do anything inside Flash yet, but the command is sent through.
 
