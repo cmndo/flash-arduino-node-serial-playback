@@ -1,7 +1,7 @@
 # flash-arduino-node-serial-playback aka FANS
 Standalone system for Flash playback control with an Arduino Uno connected to USB communicating via Serial over a NodeJS Socket Server
 
-Work in progress. If you want to get up and running shoot me a message on Twitter. My username is [@codecommando](https://twitter.com/codecommando). I don't have a diagram drawn yet, and my Arduino code is little messy because I adapted it from another project of mine and didn't remove the stuff that doesn't need to be there for this project. There are buttons on PIN 2 and 4. I work on a 13" Macbook Pro on OSX 10.11.2 (El Capitan). I have it all working here. Let me know if you get stuck and I'll try to help out.
+Work in progress. If you want to get up and running shoot me a message on Twitter. My username is [@motionharvest](https://twitter.com/motionharvest). I don't have a diagram drawn yet, and my Arduino code is little messy because I adapted it from another project of mine and didn't remove the stuff that doesn't need to be there for this project. There are buttons on PIN 2 and 4. I work on a 13" Macbook Pro on OSX 10.11.2 (El Capitan). I have it all working here. Let me know if you get stuck and I'll try to help out.
 
 
 # Installation
